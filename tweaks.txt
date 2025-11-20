@@ -1,0 +1,12 @@
+background images header, ful page guma background
+logo gumbou se spremeni accent na oranzno zlata da se ujema z ostalimi gumbi
+doda se slike logotov in postavi vertikalno
+
+spremenit hoover time na gumbih kr se bom ubiu
+
+
+O nas:
+animirat to pred footerjem da se hoovera lepo ceprau ni gumb
+
+
+
