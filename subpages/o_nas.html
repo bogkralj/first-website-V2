@@ -9,19 +9,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/global.css">
-    <script src="assets/js/main.js" defer></script>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <script src="../assets/js/main.js" defer></script>
     </head>
-<body>
+<body class="page-onas">
         <header>
         <div class="header-container">
-            <img src="assets/images/Untitled-1.png" alt="BRM Logo" class="logo" onclick="navigateTo('domov')">
+            <a href="../main-page.html">
+            <img src="../assets/images/Untitled-1.png" alt="BRM Logo" class="logo">
+        </a>
             
             <nav id="desktopNav">
-                <a href="#" onclick="navigateTo('domov')" class="nav-link active">Domov</a>
-                <a href="#" onclick="navigateTo('storitve')" class="nav-link">Storitve</a>
-                <a href="#" onclick="navigateTo('onas')" class="nav-link">O nas</a>
-                <a href="#" onclick="navigateTo('kontakt')" class="nav-link">Kontakt</a>
+                <a href="../main-page.html" class="nav-link">Domov</a>
+                <a href="storitve.html" class="nav-link">Storitve</a>
+                <a href="#header" class="nav-link active">O nas</a>
+                <a href="kontakt.html" class="nav-link">Kontakt</a>
+            </nav>
                 
                 <div class="dropdown" id="ctaDropdown">
                     <button class="cta-button" onclick="toggleDropdown()">
@@ -46,15 +49,14 @@
                         </a>
                     </div>
                 </div>
-            </nav>
 
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         </div>
     </header>
-     <div id="onas" class="page">
-            <section class="hero" style="height: 300px;">
+     <div id="onas" class="page active">
+            <section class="hero">
                 <div class="hero-background">
-                    <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1920&q=80" alt="About us">
+                    <img src="../assets/images/ChatGPT Image Nov 18, 2025, 09_50_11 PM.png" alt="About us">
                 </div>
                 <div class="hero-content">
                     <h1>O nas</h1>
@@ -64,7 +66,7 @@
 
             <!-- Mission Section -->
             <section class="grid grid-2" style="padding-top: 3rem;">
-                <div class="glass-container" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                <div class="glass-container mission-box" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
                     <h2 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Naša misija</h2>
                     <p style="color: #d1d5dc; line-height: 1.8; font-size: 1.125rem; max-width: 900px; margin: 0 auto;">
                         BRM je ustvarjen za ljudi, ki cenijo svoj čas. 
@@ -86,7 +88,7 @@
                         <div class="feature-card">
                             <div class="feature-icon">
                                 <svg viewBox="0 0 24 24" fill="none">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#E29A2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
                             <h3>Zanesljivost</h3>
@@ -96,9 +98,9 @@
                         <div class="feature-card">
                             <div class="feature-icon">
                                 <svg viewBox="0 0 24 24" fill="none">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#E29A2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="9" cy="7" r="4" stroke="#E29A2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#E29A2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
                             <h3>Strokovna ekipa</h3>
@@ -108,9 +110,9 @@
                         <div class="feature-card">
                             <div class="feature-icon">
                                 <svg viewBox="0 0 24 24" fill="none">
-                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <circle cx="12" cy="12" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="12" r="10" stroke="#E29A2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="12" r="6" stroke="#E29A2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="12" r="2" stroke="#E29A2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
                             <h3>Osredotočenost na stranke</h3>
@@ -120,7 +122,7 @@
                         <div class="feature-card">
                             <div class="feature-icon">
                                 <svg viewBox="0 0 24 24" fill="none">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke="#E29A2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
                             <h3>Predanost kakovosti</h3>
@@ -132,7 +134,7 @@
 
             <!-- Story Section -->
             <section class="grid grid-2" style="padding-bottom: 4rem;">
-                <div class="glass-container">
+                <div class="glass-container mission-box">
                     <h2 style="margin-bottom: 1.5rem;">Zakaj izbrati BRM?</h2>
                     <div style="display: flex; flex-direction: column; gap: 1.5rem;">
                         <p style="color: #d1d5dc; line-height: 1.8;">
@@ -152,55 +154,53 @@
                     </div>
                 </div>
 
-                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-                    <div class="glass-container">
-                        <div style="display: flex; gap: 1rem; align-items: start;">
-                            <div style="width: 48px; height: 48px; background: rgba(249, 162, 27, 0.2); border-radius: 0.5rem; display: flex; align-items: center;">
-                                <span style="color: #F9A21B; font-size: 1.5rem;">✓</span>
-                            </div>
-                            <div>
-                                <h3 style="color: #fff; margin-bottom: 0.5rem;">Celovite storitve</h3>
-                                <p style="color: #99a1af; font-size: 0.875rem;">
-                                    Vse, kar potrebujete za vaše vozilo, na enem mestu
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="features-wrapper">
+    <!-- 1. Celovite storitve -->
+    <div class="feature-box">
+        <div class="feature-content-row">
+            <!-- Ikona: Dodan class za centriranje -->
+            <div class="feature-icon">
+                <span>✓</span>
+            </div>
+            <div class="feature-text">
+                <h3>Celovite storitve</h3>
+                <p>Vse, kar potrebujete za vaše vozilo, na enem mestu.</p>
+            </div>
+        </div>
+    </div>
 
-                    <div class="glass-container">
-                        <div style="display: flex; gap: 1rem; align-items: start;">
-                            <div style="width: 48px; height: 48px; background: rgba(249, 162, 27, 0.2); border-radius: 0.5rem; display: flex; align-items: center;">
-                                <span style="color: #F9A21B; font-size: 1.5rem;">✓</span>
-                            </div>
-                            <div>
-                                <h3 style="color: #fff; margin-bottom: 0.5rem;">Strokovnost</h3>
-                                <p style="color: #99a1af; font-size: 0.875rem;">
-                                    Izkušena ekipa z globalnim znanjem avtomobilske industrije
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+    <!-- 2. Strokovnost -->
+    <div class="feature-box">
+        <div class="feature-content-row">
+            <div class="feature-icon">
+                <span>✓</span>
+            </div>
+            <div class="feature-text">
+                <h3>Strokovnost</h3>
+                <p>Izkušena ekipa z globalnim znanjem avtomobilske industrije.</p>
+            </div>
+        </div>
+    </div>
 
-                    <div class="glass-container">
-                        <div style="display: flex; gap: 1rem; align-items: start;">
-                            <div style="width: 48px; height: 48px; background: rgba(249, 162, 27, 0.2); border-radius: 0.5rem; display: flex; align-items: center;">
-                                <span style="color: #F9A21B; font-size: 1.5rem;">✓</span>
-                            </div>
-                            <div>
-                                <h3 style="color: #fff; margin-bottom: 0.5rem;">Transparentnost</h3>
-                                <p style="color: #99a1af; font-size: 0.875rem;">
-                                    Jasna komunikacija in poštene cene brez skritih stroškov
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- 3. Transparentnost -->
+    <div class="feature-box">
+        <div class="feature-content-row">
+            <div class="feature-icon">
+                <span>✓</span>
+            </div>
+            <div class="feature-text">
+                <h3>Transparentnost</h3>
+                <p>Jasna komunikacija in poštene cene brez skritih stroškov.</p>
+            </div>
+        </div>
+    </div>
+</div>
             </section>
     <footer>
         <div class="footer-container">
             <!-- Company Info -->
             <div class="footer-section">
-                <img src="assets/images/Untitled-1.png" alt="BRM Logo" class="footer-logo">
+                <img src="../assets/images/Untitled-1.png" alt="BRM Logo" class="footer-logo" style="width: 220px;">
                 <p style="color: #d1d5dc; margin-top: 1rem;">Brezskrbna rešitev mobilnosti</p>
             </div>
 

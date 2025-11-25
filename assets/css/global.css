@@ -1,0 +1,1420 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+    background: #111; /* fallback barva */
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url("../images/dotted-black-wall.jpg") repeat;
+    background-size: 600px;
+    opacity: 0.50; /* zelo temno blendano */
+    z-index: -1;
+    pointer-events: none;
+}
+
+        
+        section {
+            background: transparent !important;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(20, 22, 25, 0.75);   /* match body */
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid #121212;
+    transition: background 0.35s ease, backdrop-filter 0.35s ease;
+            height: 105px;
+            
+        }
+        header, 
+header * {
+    box-sizing: border-box !important;
+}
+
+        
+        header.scrolled {
+    background: rgba(20, 20, 20, 0.65);
+    backdrop-filter: blur(40px);
+    box-shadow: 0 0 40px rgba(255, 200, 100, 0.05);
+}
+
+        .header-container {
+            max-width: 1920px;
+            margin: 0 auto;
+            padding: 0.5rem 2rem;
+            display: grid !important;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            font-size: 20px;
+            padding: 0 2rem !important; 
+            gap: 2rem;
+        }
+        
+        .logo {
+            width: 178px;
+            height: 100px;
+            object-fit: contain;
+            cursor: pointer;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            align-items: center;
+
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #F9A21B;
+        }
+
+        .cta-button {
+            background: #F9A21B;
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.3s;
+            position: relative;
+            font-size: 20px;
+        }
+
+        .cta-button:hover {
+            background: #e89415c6;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #1a1a1a;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.4);
+            z-index: 1;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+            right: 0;
+            font-size: 1rem;
+        }
+
+        .dropdown-content a {
+            color: #ffffff;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #F9A21B;
+        }
+
+        .dropdown.active .dropdown-content {
+            display: block;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 120px;
+            left: 0;
+            right: 0;
+            background: rgba(34, 34, 34, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-nav.active {
+            display: block;
+        }
+
+        .mobile-nav a {
+            display: block;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background 0.3s;
+        }
+
+        .mobile-nav a:hover {
+            background: rgba(47, 43, 38, 0.2);
+            color: #F9A21B;
+        }
+
+        /* Page Container */
+        .page-container {
+            padding-top: 0;
+            min-height: 100vh;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero Section */
+.page-home .hero {
+    position: relative;
+    height: 850px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding-left: 10rem;
+    margin: 0;
+    padding-top: 100px;
+}
+
+.page-home .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+}
+
+.page-home .hero-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 1;
+    transform: translateY(70px);
+}
+
+.page-home .hero-background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.45),
+        rgba(0, 0, 0, 0.75)
+    );
+    z-index: 1;
+}
+
+.page-home .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: left;
+    max-width: 800px;
+    padding: 0 2rem;
+}
+
+.page-home .hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.page-home .hero p {
+    font-size: 1.25rem;
+    color: #d1d5dc;
+    margin-bottom: 2rem;
+}
+
+        /* Glass Container */
+        .glass-container {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(54, 65, 83, 1);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        .mission-box {
+    /* 1. Povozimo barvo ozadja (Dark Slate namesto Black 0.4) */
+    background: rgba(5, 10, 20, 0.6) !important; 
+    
+    /* 2. Izboljšan Blur */
+    backdrop-filter: blur(16px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+    
+    /* 3. Boljši robovi in senca */
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 1.5rem !important;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+    
+    /* Nujno za sijaj */
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* NOTRANJI SIJAJ (Samo za mission box) */
+.mission-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit; /* Sledi border-radiusu starša */
+    pointer-events: none;
+    z-index: -1; /* Gre pod tekst */
+
+    /* Diagonalni sijaj */
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.082),
+        rgba(255, 255, 255, 0.01)
+    );
+}
+
+/* Zagotovimo, da je tekst nad sijajem in prave barve */
+.mission-box h2,
+.mission-box p {
+    position: relative;
+    z-index: 2;
+}
+
+.mission-box h2 {
+    color: #ffffff;
+}
+
+.mission-box p {
+    color: #cbd5e1 !important; /* Svetlo siva za berljivost */
+}
+
+/* Wrapper za seznam (da lepše izgleda razmik) */
+.features-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* =========================================
+   FEATURE BOX - Navy Grey Premium Style
+   ========================================= */
+.feature-box {
+    position: relative;
+    /* 1. Navy Grey Ozadje (enako kot Galerija/Misija) */
+    background: rgba(5, 10, 20, 0.6);
+    
+    /* 2. Stekleni Blur */
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    
+    /* 3. Robovi */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    padding: 1.5rem; /* Malo manjši padding za lepši seznam */
+    
+    /* Tranzicija za hover */
+    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    overflow: hidden;
+    cursor: default;
+}
+
+/* NOTRANJI SIJAJ (SHINE EFFECT) */
+.feature-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    
+    /* Diagonalni beli sijaj */
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.08),
+        rgba(255, 255, 255, 0.01)
+    );
+}
+
+/* =========================================
+   HOVER EFEKTI (Interaktivnost)
+   ========================================= */
+.feature-box:hover {
+    transform: translateY(-5px); /* Premik gor */
+    border-color: #F9A21B;       /* Oranžen rob */
+    background: rgba(5, 10, 20, 0.75); /* Rahlo potemni/poglobi ozadje */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* =========================================
+   VSEBINA (Ikone in Tekst)
+   ========================================= */
+.feature-content-row {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start; /* Ikona ostane zgoraj, če je besedila veliko */
+    position: relative;
+    z-index: 1; /* Da je nad sijajem */
+}
+
+/* Stil za ikono (Kvadratek) */
+.feature-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0; /* Prepreči krčenje */
+    
+    /* Stekleno oranžno ozadje */
+    background: rgba(249, 162, 27, 0.15);
+    border: 1px solid rgba(249, 162, 27, 0.2);
+    border-radius: 0.5rem;
+    
+    /* CENTRIRANJE KLJUKICE (To si iskal) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    color: #F9A21B;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Stil besedila */
+.feature-text h3 {
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.feature-text p {
+    color: #94a3b8; /* Slate siva */
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* Feature Cards */
+.feature-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.018); /* ultra transparentno steklo */
+    border: 1px solid rgba(255, 255, 255, 0.08); 
+    border-radius: 1rem;
+    padding: 2rem;
+    overflow: hidden;
+
+    /* pravi glass efekt */
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+    transition: 0.3s ease;
+}
+
+/* notranji highlight – stekleni rob */
+.feature-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.293),
+        rgba(255, 255, 255, 0.01)
+    );
+}
+
+.feature-card:hover {
+    border-color: #F9A21B;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45); /* bohatejši hover efekt */
+    background: rgba(255, 255, 255, 0.06);     /* malo bolj svetla ob hoverju */
+    transform: translateY(-6px);
+}
+
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(249, 162, 27, 0.2);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: #F9A21B;
+        }
+
+        .feature-card h3 {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .feature-card p {
+            color: #99a1af;
+            line-height: 1.625;
+            margin-bottom: 1.5rem;
+        }
+        .feature-card .btn {
+            width: 55%; 
+            min-width: 100px;
+            height: 17%;
+}
+
+
+        /* Buttons */
+        .btn {
+            background: #F9A21B;
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: #e89415c6;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #364153;
+            color: #d1d5dc;
+        }
+
+        .btn-outline:hover {
+            background: rgba(54, 65, 83, 0.5);
+        }
+
+/* GRID LAYOUT (Kept mostly the same, ensuring spacing matches) */
+.brand-grid {
+    max-width: 1400px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 items per row */
+    gap: 2rem; 
+}
+
+/* THE BRAND BOX - Styled exactly like feature-card */
+.brand-item {
+    /* Layout specific to brands */
+    height: 220px;
+    display: flex;
+    align-items: center;     
+    justify-content: center;
+    
+    /* GLASS STYLE (Copied from feature-card) */
+    position: relative; /* Vital for the inner shine */
+    background: rgba(255, 255, 255, 0.021); /* Ultra transparent */
+    border: 1px solid rgba(255, 255, 255, 0.08); 
+    border-radius: 1rem;
+    overflow: hidden; /* Keeps the inner shine contained */
+
+    /* The "True Glass" Blur Effect */
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+    transition: 0.3s ease;
+}
+
+/* INNER HIGHLIGHT - The "Glass Edge" Shine */
+.brand-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+
+    /* Diagonal gradient from top-left */
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.295),
+        rgba(255, 255, 255, 0.01)
+    );
+}
+
+/* HOVER EFFECT - Matching feature-card */
+.brand-item:hover {
+    border-color: #F9A21B;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+    background: rgba(255, 255, 255, 0.06); /* Gets slightly brighter */
+    transform: translateY(-6px);
+}
+
+/* IMAGE STYLING (Kept your existing logic, looks good) */
+.brand-item img {
+    width: 110px;      
+    max-height: 110px; 
+    object-fit: contain;
+    opacity: 0.9;
+    filter: brightness(0.9);
+    transition: 0.25s;
+    
+    /* Ensures image sits above the background shine */
+    position: relative; 
+    z-index: 1; 
+}
+
+.brand-item:hover img {
+    opacity: 1; 
+    filter: brightness(1.2); /* Slightly brighter on hover */
+}
+
+/* TABLET – 2 v vrsto */
+@media (max-width: 1024px) {
+    .brand-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .brand-item {
+        height: 180px;
+    }
+
+    .brand-item img {
+        width: 90px;
+        max-height: 90px;
+    }
+}
+
+/* MOBILE – 1 v vrsto */
+@media (max-width: 600px) {
+    .brand-grid {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1.2rem;
+    }
+
+    .brand-item {
+        height: 160px;
+    }
+
+    .brand-item img {
+        width: 80px;
+        max-height: 80px;
+    }
+}
+
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #d1d5dc;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #364153;
+            border-radius: 0.5rem;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #F9A21B;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: #d1d5dc;
+            font-size: 1.125rem;
+        }
+
+        /* Reviews */
+/* Section wrapper */
+.reviews-section {
+    padding: 5rem 2rem;
+}
+
+/* Header styling */
+.reviews-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.reviews-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.reviews-stars {
+    color: #F9A21B;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+}
+
+.reviews-subtitle {
+    color: #94a3b8; /* Slate grey */
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+}
+
+/* Grid layout */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* 1. THE CARD (Updated to match Feature Card) */
+.review-card {
+    position: relative; /* Vital for the inner shine */
+    
+    /* Ultra Transparent Glass */
+    background: rgba(255, 255, 255, 0.048); 
+    border: 1px solid rgba(255, 255, 255, 0.08); 
+    border-radius: 1rem;
+    padding: 2rem;
+    
+    /* Keeps the inner shine contained */
+    overflow: hidden; 
+
+    /* The "True Glass" Blur Effect */
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+    transition: 0.3s ease;
+    
+    /* Flex layout for content */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* 2. INNER HIGHLIGHT - The "Glass Edge" Shine */
+.review-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+
+    /* Diagonal gradient from top-left (White -> Transparent) */
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.285),
+        rgba(255, 255, 255, 0.01)
+    );
+}
+
+/* 3. HOVER EFFECT */
+.review-card:hover {
+    border-color: #F9A21B; /* Orange border on hover */
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+    background: rgba(255, 255, 255, 0.06); /* Slightly brighter */
+    transform: translateY(-6px);
+}
+
+/* 4. CONTENT STYLING */
+
+/* Header inside card (Avatar + Name) */
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1; /* Ensures text sits above the background shine */
+}
+
+/* Avatar - Updated to "Glass Orange" instead of solid block */
+.review-avatar {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    
+    /* Transparent Orange Background */
+    background: rgba(249, 162, 27, 0.15); 
+    border: 1px solid rgba(249, 162, 27, 0.2);
+    color: #F9A21B;
+    
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+/* Name and Date wrapper */
+.review-info h4 {
+    margin: 0;
+    color: #f1f5f9; /* Bright white/grey */
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.review-date {
+    color: #64748b; /* Muted grey */
+    font-size: 0.85rem;
+    margin-top: 2px;
+    display: block;
+}
+
+/* The Review Text */
+.review-card p {
+    color: #cbd5e1; /* Light grey for readability on dark bg */
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Stars */
+.stars {
+    color: #F9A21B;
+    font-size: 1.1rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Stars inside eac*
+
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .grid {
+                padding: 2rem 1rem;
+            }
+
+            .header-container {
+                padding: 1rem;
+            }
+
+            .logo {
+                width: 120px;
+                height: 70px;
+            }
+        }
+
+        /* Contact Info */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.403);
+            border-radius: 0.5rem;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(249, 160, 27, 0.311);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: #F9A21B;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid #364153;
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #99a1af;
+            text-decoration: none;
+            line-height: 1.8;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #F9A21B;
+        }
+
+        .footer-logo {
+            width: 178px;
+            height: 154px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #364153;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: #F9A21B;
+            border-color: #F9A21B;
+        }
+
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+            stroke: #99a1af;
+        }
+
+        .social-link:hover svg {
+            stroke: #ffffff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        /* Gallery Styles */
+.gallery-container {
+    position: relative; /* Essential for the inner shine */
+    
+    /* DARKER Background as requested (60% opacity black/slate) */
+    background: rgba(5, 10, 20, 0.6); 
+    
+    /* Premium Glass Effect */
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    
+    /* Very subtle border base */
+    border: 1px solid rgba(255, 255, 255, 0.05); 
+    
+    border-radius: 1.5rem;
+    padding: 3rem 2rem;
+    margin: 3rem 2rem;
+    
+    /* Shadow for depth */
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+    overflow: hidden; /* Ensures the glass shine stays inside */
+}
+
+/* THE INNER SHINE (Matches Feature Card Style) */
+.gallery-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 0;
+
+    /* Diagonal white shine from top-left */
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.082),
+        rgba(255, 255, 255, 0.01)
+    );
+}
+
+/* =========================================
+   SCROLLABLE AREA
+   ========================================= */
+.gallery-scroll {
+    position: relative;
+    z-index: 1; /* Sits on top of the shine */
+    display: flex;
+    gap: 1.5rem; /* Increased gap slightly for better look */
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    padding: 1rem 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Custom Orange Scrollbar */
+.gallery-scroll::-webkit-scrollbar {
+    height: 6px; /* Sleeker height */
+}
+
+.gallery-scroll::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0);
+    border-radius: 4px;
+    margin: 0 2rem; /* Indents scrollbar slightly */
+}
+
+.gallery-scroll::-webkit-scrollbar-thumb {
+    background: #F9A21B;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.gallery-scroll::-webkit-scrollbar-thumb:hover {
+    background: #e08e12;
+}
+
+/* =========================================
+   GALLERY ITEMS
+   ========================================= */
+.gallery-item {
+    flex: 0 0 320px;
+    height: 260px;
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    cursor: grab;
+    
+    /* REMOVED the standard border (border: 1px solid...) */
+    border: none;
+    
+    /* Kept the shadow for depth */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    
+    /* This fix ensures the corners don't "bleed" pixels */
+    -webkit-mask-image: -webkit-radial-gradient(white, black); 
+    transform: translateZ(0); /* Hardware acceleration for smooth edges */
+}
+
+/* NEW: The "Inner Glass Rim" Fix 
+   This creates a border that sits ON TOP of the image edges, 
+   blending them perfectly. */
+.gallery-item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 2; /* Sits above the image */
+    
+    /* A subtle inner light rim + a dark fade at the edges */
+    box-shadow: 
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1), /* The thin glass edge */
+        inset 0 0 20px rgba(0, 0, 0, 0.2);        /* Inner vignette to deepen edges */
+}
+
+.gallery-item:active {
+    cursor: grabbing;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    /* Optional: slightly dim the image so the glass rim pops more */
+    filter: brightness(0.95); 
+}
+
+/* Hover Effect: Zoom Image */
+.gallery-item:hover img {
+    transform: scale(1.1);
+    filter: brightness(1); /* Brighten up on hover */
+}
+
+
+/* =========================================
+   HERO – STORITVE, O NAS, KONTAKT (ISTI STIL)
+   ========================================= */
+
+/* Glavni hero container */
+.page-storitve .hero,
+.page-onas .hero,
+.page-kontakt .hero {
+    position: relative;
+    height: clamp(300px, 30vw, 450px); /* fluid višina */
+    display: flex;
+    align-items: center;      /* vertikalno centriranje */
+    justify-content: center;  /* horizontalno centriranje */
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    border-radius: clamp(10px, 3vw, 30px);
+}
+
+/* Background wrapper */
+.page-storitve .hero-background,
+.page-onas .hero-background,
+.page-kontakt .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+}
+
+/* Slika v ozadju (avto) */
+.page-storitve .hero-background img,
+.page-onas .hero-background img,
+.page-kontakt .hero-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 1;
+
+    /* avto malo premaknjen dol – lahko po želji spremeniš */
+    transform: translateY(clamp(35px, 8vw, 35px));
+}
+
+/* Temen gradient čez sliko */
+.page-storitve .hero-background::after,
+.page-onas .hero-background::after,
+.page-kontakt .hero-background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.45),
+        rgba(0, 0, 0, 0.75)
+    );
+    z-index: 1;
+}
+
+/* Vsebina (naslov + podnaslov) */
+.page-storitve .hero-content,
+.page-onas .hero-content,
+.page-kontakt .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -30%); /* malo pod sredino */
+    text-align: center;
+    width: 100%;
+    padding: 0 2rem;
+    z-index: 10;
+}
+
+/* Naslov */
+.page-storitve .hero h1,
+.page-onas .hero h1,
+.page-kontakt .hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+/* Podnaslov */
+.page-storitve .hero p,
+.page-onas .hero p,
+.page-kontakt .hero p {
+    font-size: 1.25rem;
+    color: #d1d5dc;
+    margin-bottom: 2rem;
+}
+
+.page-storitve nav,
+.page-kontakt nav {
+    transform: translateY(3px) !important;
+}
+
+.page-storitve .cta-button,
+.page-kontakt .cta-button {
+    transform: translateY(4px);
+}
+
+.contact-logo {
+    width: 250px;            /* poveča logo */
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin-bottom: 1.5rem;   /* razmik pod logom */
+}
+
+.page-storitve .hero::after,
+.page-onas .hero::after,
+.page-kontakt .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    /* enakomerna sivkasto-črna plast preko cele slike */
+    background: rgba(74, 66, 66, 0.175); /* <- lahko dvigneš ali spustiš opacity */
+
+    z-index: 1;
+}
+
+
+/* ======================================================
+   GLASS CONTAINER – oba boxa popolnoma enaka barva & stil
+   ====================================================== */
+/* ======================================================
+   KONTAKTNI BOX – enostaven, čist, identičen obema
+   (osnovan na feature-card)
+   ====================================================== */
+
+/* ======================================================
+   KONTAKTNI BOX – mission-box barva + čist glass stil
+   ====================================================== */
+
+/* ======================================================
+   KONTAKTNI BOX – enostaven, čist, identičen obema
+   (osnovan na feature-card)
+   ====================================================== */
+
+.kontakt-box {
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);  /* ultra light glass */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    padding: 2.5rem;
+
+    /* Glass blur */
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+
+    /* Shadow */
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+
+    /* Keep shine inside */
+    overflow: hidden;
+}
+
+/* Notranji shine (enako feature-card) */
+.kontakt-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.15),
+        rgba(255, 255, 255, 0.01)
+    );
+}
+
+/* Naslovi v boxu */
+.kontakt-box h2 {
+    color: #fff;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Vsebina boxa naj bo nad shine */
+.kontakt-box * {
+    position: relative;
+    z-index: 2;
+}
+
+.contact-item {
+    background: rgba(255, 255, 255, 0.04);          /* svetlejše – match input */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.75rem;
+    padding: 1rem;
+
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+
+    backdrop-filter: blur(10px) saturate(140%);
+    transition: all 0.3s ease, border-color 0.25s;
+}
+
+/* HOVER — ENAK KOT FEATURE CARD / BRAND / GALERIJA */
+.contact-item:hover {
+    transform: translateY(-2px);
+    border-color: #F9A21B;
+    background: rgba(255, 255, 255, 0.07);  /* malo svetlejše, elegantno */
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+}
+.contact-logo {
+    display: block;
+    margin: 2rem auto 0 auto;  /* center horizontally */
+    width: 260px;              /* malo večje */
+    height: auto;
+    opacity: 1;
+    filter: none;              /* brez obarvanja */
+}
+
+
+
+

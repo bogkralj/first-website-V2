@@ -1,0 +1,47 @@
+.review-card {
+    /* CHANGED: Very low opacity (10%). 
+       Instead of Blue, I used a tiny bit of White (255) to make it look like clean glass 
+       sitting on the dark background. */
+    background: rgba(255, 255, 255, 0.03); 
+    
+    /* CHANGED: Blur is set to 2px. 
+       This is just enough to make text readable, but low enough 
+       that you can see every detail of the texture behind it. */
+    backdrop-filter: blur(2px); 
+    -webkit-backdrop-filter: blur(2px);
+    
+    /* Layout */
+    padding: 2rem;
+    border-radius: 1rem;
+    position: relative; 
+    border: none; 
+    
+    /* A very slight shadow to lift it off the texture */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* 2. THE GRADIENT BORDER (The Strategy from your screenshot) */
+/* This part works perfectly, keep it as is. */
+.review-card::before {
+    content: "";
+    position: absolute;
+    inset: 0; 
+    border-radius: inherit; 
+    padding: 1px; /* Border thickness */
+    
+    /* Gradient: Visible White on Top-Left -> Fades out on Bottom-Right */
+    background: linear-gradient(
+        135deg, 
+        rgba(255, 255, 255, 0.3), 
+        rgba(255, 255, 255, 0.0)
+    );
+    
+    /* The Mask Logic (Modern CSS, better than the snippet you pasted) */
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    
+    pointer-events: none; 
+}
