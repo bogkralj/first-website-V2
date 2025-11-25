@@ -30,165 +30,299 @@ body::before {
         }
 
         /* Header Styles */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(20, 22, 25, 0.75);   /* match body */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Header je visoko, a meni bo višje */
+    background: rgba(20, 22, 25, 0.75);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid #121212;
     transition: background 0.35s ease, backdrop-filter 0.35s ease;
-            height: 105px;
-            
-        }
-        header, 
-header * {
-    box-sizing: border-box !important;
+    height: 105px;
 }
 
-        
-        header.scrolled {
-    background: rgba(20, 20, 20, 0.65);
-    backdrop-filter: blur(40px);
-    box-shadow: 0 0 40px rgba(255, 200, 100, 0.05);
+.header-container {
+    max-width: 1920px;
+    margin: 0 auto;
+    height: 100%;
+    
+    /* DESKTOP: GRID LAYOUT */
+    display: grid; 
+    grid-template-columns: auto 1fr auto; /* Logo | Nav | Gumb */
+    align-items: center;
+    padding: 0 2rem;
+    gap: 2rem;
 }
 
-        .header-container {
-            max-width: 1920px;
-            margin: 0 auto;
-            padding: 0.5rem 2rem;
-            display: grid !important;
-            grid-template-columns: auto 1fr auto;
-            align-items: center;
-            font-size: 20px;
-            padding: 0 2rem !important; 
-            gap: 2rem;
-        }
-        
+/* LOGO */
+.logo {
+    width: auto;
+    height: 100px; /* Velikost na desktopu */
+    object-fit: contain;
+    cursor: pointer;
+}
+
+/* NAVIGACIJA */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.3s;
+    padding: 0.5rem 1rem;
+}
+
+nav a:hover,
+nav a.active {
+    color: #F9A21B;
+}
+
+/* GUMB ZA STORITEV (Desktop) */
+.cta-button {
+    background: #F9A21B;
+    color: #ffffff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.3s;
+    font-size: 20px;
+    white-space: nowrap;
+}
+
+.cta-button:hover {
+    background: #e89415c6;
+}
+
+/* DROPDOWN (Za desktop gumb) */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    
+    /* Pozicioniranje */
+    top: 100%;       /* Postavi ga točno pod gumb */
+    right: 0;        /* Poravnaj z desnim robom gumba */
+    margin-top: 15px; /* Majhen razmik */
+    
+    /* Izgled */
+    background-color: #1a1a1a;
+    min-width: 220px;
+    box-shadow: 0px 8px 24px rgba(0,0,0,0.5); /* Malo močnejša senca */
+    z-index: 1001;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255,255,255,0.1); /* Tanek rob za lepši izgled */
+}
+
+/* Zagotovi, da se prikaže, ko ima starš class "active" */
+.dropdown.active .dropdown-content {
+    display: block;
+    animation: fadeIn 0.2s ease-in-out; /* Dodamo animacijo za lepši efekt */
+}
+
+/* Preprosta animacija */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-content a {
+    color: #ffffff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: #F9A21B;
+}
+
+.dropdown.active .dropdown-content {
+    display: block;
+}
+
+/* BURGER GUMB (Privzeto skrit na desktopu) */
+.mobile-menu-btn {
+    display: none;
+}
+
+
+/* =========================================
+   2. MOBILE HEADER (Pod 1024px)
+   ========================================= */
+@media (max-width: 1024px) {
+    
+    .header-container {
+        /* POVOZIMO GRID Z FLEXBOXOM */
+        display: flex !important; 
+        justify-content: space-between; /* Logo levo, Burger desno */
+        align-items: center;
+        padding: 0 1.5rem;
+        width: 100%;
+    }
+
+    /* Skrijemo Desktop elemente */
+    nav,
+    #desktopNav,
+    #ctaDropdown,
+    .cta-button {
+        display: none !important;
+    }
+
+    /* Nastavitve LOGOTIPA za Mobile */
+    .logo {
+        height: 80px;  /* Prilagojeno za mobile, da ne bo prevelik */
+        width: auto;
+        margin: 0;
+    }
+    
+    /* Na zelo majhnih ekranih (pod 600px) še malo manjši logo */
+    @media (max-width: 600px) {
         .logo {
-            width: 178px;
-            height: 100px;
-            object-fit: contain;
-            cursor: pointer;
+            height: 70px; 
         }
+    }
 
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            align-items: center;
+    /* Povezava okoli loga */
+    .header-container > a {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
 
-        }
+    /* BURGER GUMB - Prikažemo */
+    .mobile-menu-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        color: white;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        margin-left: auto;
+        line-height: 1; 
+        z-index: 1002; /* Nad vsem v headerju */
+    }
+}
 
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 400;
-            transition: color 0.3s;
-            padding: 0.5rem 1rem;
-        }
 
-        nav a:hover,
-        nav a.active {
-            color: #F9A21B;
-        }
+/* =========================================
+   3. PRESTIGE MOBILE MENU (Overlay)
+   ========================================= */
+/* To je tisti div, ki mora biti na dnu body-ja */
 
-        .cta-button {
-            background: #F9A21B;
-            color: #ffffff;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            border: none;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: background 0.3s;
-            position: relative;
-            font-size: 20px;
-        }
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Čez cel ekran */
+    
+    /* KLJUČNO: Zelo visok Z-Index, da prekrije slike in header */
+    z-index: 9999; 
+    
+    background: rgba(10, 10, 10, 0.96); /* Temno ozadje */
+    backdrop-filter: blur(15px);        /* Blur efekt */
+    -webkit-backdrop-filter: blur(15px);
+    
+    /* Skrito privzeto */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-        .cta-button:hover {
-            background: #e89415c6;
-        }
+/* Ko je meni odprt */
+.mobile-nav.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
 
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
+/* Vsebina menija */
+.mobile-nav-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
+    transform: translateY(30px);
+    transition: transform 0.4s ease-out;
+}
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #1a1a1a;
-            min-width: 200px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.4);
-            z-index: 1;
-            border-radius: 0.5rem;
-            margin-top: 0.5rem;
-            right: 0;
-            font-size: 1rem;
-        }
+.mobile-nav.active .mobile-nav-content {
+    transform: translateY(0);
+}
 
-        .dropdown-content a {
-            color: #ffffff;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: background 0.3s;
-        }
+/* Linki v meniju */
+.mobile-nav a {
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    border-bottom: none; /* Odstranimo stari border */
+    padding: 0;
+}
 
-        .dropdown-content a:hover {
-            background-color: #F9A21B;
-        }
+.mobile-nav a:hover {
+    color: #F9A21B;
+    background: none; /* Odstranimo staro ozadje */
+}
 
-        .dropdown.active .dropdown-content {
-            display: block;
-        }
+/* Divider črta */
+.mobile-nav-divider {
+    width: 50px;
+    height: 2px;
+    background: rgba(255,255,255,0.1);
+    margin: 1rem 0;
+}
 
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: #ffffff;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
+/* Gumb za zapiranje (X) znotraj menija */
+.close-menu-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    transition: 0.3s;
+}
 
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            top: 120px;
-            left: 0;
-            right: 0;
-            background: rgba(34, 34, 34, 0.98);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-nav.active {
-            display: block;
-        }
-
-        .mobile-nav a {
-            display: block;
-            color: #ffffff;
-            text-decoration: none;
-            padding: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: background 0.3s;
-        }
-
-        .mobile-nav a:hover {
-            background: rgba(47, 43, 38, 0.2);
-            color: #F9A21B;
-        }
+.close-menu-btn:hover {
+    color: #F9A21B;
+    transform: rotate(90deg);
+}
 
         /* Page Container */
         .page-container {
@@ -205,18 +339,24 @@ header * {
         }
 
         /* Hero Section */
+/* --- OSNOVNI HERO STIL (Desktop) --- */
 .page-home .hero {
     position: relative;
-    height: 850px;
+    height: 850px; /* Ali 100vh za cel ekran */
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    align-items: center;      /* Vertikalno na sredino */
+    justify-content: flex-start; /* Horizontalno levo */
     overflow: hidden;
-    padding-left: 10rem;
+    
+    /* POPRAVEK: Uporabi % namesto 10rem, da se prilagaja širini */
+    padding-left: 8%; 
+    padding-right: 5%;
+    
     margin: 0;
-    padding-top: 100px;
+    padding-top: 0; /* Če imaš header fixed, mogoče rabiš, sicer daj 0 */
 }
 
+/* --- OZADJE --- */
 .page-home .hero-background {
     position: absolute;
     top: 0;
@@ -230,43 +370,92 @@ header * {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 1;
-    transform: translateY(70px);
+    /* object-position: right center; -> To zagotovi, da se avto na desni vedno vidi */
+    object-position: right center; 
 }
 
+/* Temnenje ozadja za berljivost teksta */
 .page-home .hero-background::after {
     content: "";
     position: absolute;
     inset: 0;
+    /* POPRAVEK: Gradient gre od leve proti desni. 
+       Levo je temno (za tekst), desno prozorno (za avto) */
     background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.45),
-        rgba(0, 0, 0, 0.75)
+        to right,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(0, 0, 0, 0.6) 50%,
+        rgba(0, 0, 0, 0.1) 100%
     );
     z-index: 1;
 }
 
+/* --- VSEBINA --- */
 .page-home .hero-content {
     position: relative;
     z-index: 10;
     text-align: left;
-    max-width: 800px;
-    padding: 0 2rem;
+    max-width: 700px; /* Omejimo širino teksta */
+    width: 100%;
 }
 
 .page-home .hero h1 {
-    font-size: 3rem;
+    font-size: 3.5rem; /* Malo večji naslov za desktop */
     font-weight: 800;
     margin-bottom: 1.5rem;
-    line-height: 1.2;
+    line-height: 1.1;
+    color: #ffffff;
+    text-transform: uppercase;
 }
 
 .page-home .hero p {
     font-size: 1.25rem;
     color: #d1d5dc;
     margin-bottom: 2rem;
+    line-height: 1.6;
+    max-width: 90%;
 }
 
+/* --- RESPONZIVNOST (DODANO) --- */
+
+/* Za tablice in manjše laptope (pod 1024px) */
+@media (max-width: 1024px) {
+    .page-home .hero {
+        /* Zmanjšamo odmik na levi, da pridobimo prostor */
+        padding-left: 2rem; 
+        padding-right: 2rem;
+        height: auto;     /* Višina se prilagodi */
+        min-height: 600px;
+    }
+
+    .page-home .hero h1 {
+        font-size: 2.5rem; /* Manjši font */
+    }
+}
+
+/* Za telefone (pod 768px) */
+@media (max-width: 768px) {
+    .page-home .hero {
+        padding: 6rem 1.5rem 4rem 1.5rem; /* Zgoraj več prostora zaradi menija */
+        justify-content: center; /* Centriramo vsebino */
+        text-align: center; /* Tekst na sredino */
+    }
+
+    .page-home .hero-content {
+        text-align: center; /* Prisilimo tekst na sredino */
+    }
+    
+    .page-home .hero h1 {
+        font-size: 2rem;
+    }
+
+    .page-home .hero p {
+        margin-left: auto;
+        margin-right: auto; /* Da je paragraf na sredini */
+    }
+
+
+}
         /* Glass Container */
         .glass-container {
             background: rgba(0, 0, 0, 0.4);
@@ -442,81 +631,112 @@ header * {
 }
 
         .grid-4 {
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        }
+    display: grid;
+    /* Na desktopu 4 stolpci, enakomerno porazdeljeni */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 2rem;
+    
+    /* KLJUČNO: To poskrbi, da so vse kartice fizično enako visoke */
+    align-items: stretch; 
+}
+
+/* Responzivnost za Grid (da se ne zruši na malih ekranih) */
+@media (max-width: 1200px) {
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+    .grid-4 { grid-template-columns: 1fr; }
+}
 
         /* Feature Cards */
 .feature-card {
+    /* --- FLEXBOX NASTAVITVE ZA PORAVNAVO --- */
+    display: flex;
+    flex-direction: column; /* Elementi eden pod drugim */
+    height: 100%;           /* Kartica se mora raztegniti do roba grid celice */
+    justify-content: flex-start;
+    /* -------------------------------------- */
+
     position: relative;
-    background: rgba(255, 255, 255, 0.018); /* ultra transparentno steklo */
+    background: rgba(255, 255, 255, 0.018);
     border: 1px solid rgba(255, 255, 255, 0.08); 
     border-radius: 1rem;
     padding: 2rem;
     overflow: hidden;
-
-    /* pravi glass efekt */
     backdrop-filter: blur(18px) saturate(180%);
     -webkit-backdrop-filter: blur(18px) saturate(180%);
-
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
     transition: 0.3s ease;
 }
 
-/* notranji highlight – stekleni rob */
+/* Hover efekti ostanejo enaki */
 .feature-card::before {
     content: "";
     position: absolute;
     inset: 0;
     border-radius: inherit;
     pointer-events: none;
-
-    background: linear-gradient(
-        to bottom right,
-        rgba(255, 255, 255, 0.293),
-        rgba(255, 255, 255, 0.01)
-    );
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.293), rgba(255, 255, 255, 0.01));
 }
 
 .feature-card:hover {
     border-color: #F9A21B;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45); /* bohatejši hover efekt */
-    background: rgba(255, 255, 255, 0.06);     /* malo bolj svetla ob hoverju */
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+    background: rgba(255, 255, 255, 0.06);
     transform: translateY(-6px);
 }
 
+/* Ikona */
+.feature-icon {
+    width: 56px;
+    height: 56px;
+    background: rgba(249, 162, 27, 0.2);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    flex-shrink: 0; /* Ikona se ne sme krčiti */
+}
 
-        .feature-icon {
-            width: 56px;
-            height: 56px;
-            background: rgba(249, 162, 27, 0.2);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
+.feature-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: #F9A21B;
+}
 
-        .feature-icon svg {
-            width: 28px;
-            height: 28px;
-            stroke: #F9A21B;
-        }
+/* Naslov */
+.feature-card h3 {
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    flex-shrink: 0; /* Naslov se ne sme krčiti */
+}
 
-        .feature-card h3 {
-            font-size: 1.125rem;
-            margin-bottom: 1rem;
-            color: #ffffff;
-        }
+/* Opis (Paragraf) - TUKAJ JE REŠITEV */
+.feature-card p {
+    color: #99a1af;
+    line-height: 1.625;
+    margin-bottom: 2rem;
+    
+    /* KLJUČNO: Tekst se raztegne in zapolni ves prazen prostor */
+    flex-grow: 1; 
+}
 
-        .feature-card p {
-            color: #99a1af;
-            line-height: 1.625;
-            margin-bottom: 1.5rem;
-        }
-        .feature-card .btn {
-            width: 55%; 
-            min-width: 100px;
-            height: 17%;
+/* Gumb znotraj kartice */
+.feature-card .btn {
+    /* Poravnava */
+    margin-top: auto;       /* Potisne gumb na dno (dvojna varnost) */
+    align-self: flex-start; /* Poravna gumb levo */
+    
+    /* Izgled */
+    width: auto;            /* Naj se prilagodi vsebini */
+    min-width: 140px;       /* Minimalna širina, da ne izgleda premajhen */
+    white-space: nowrap;    /* Prepreči lomljenje teksta v dve vrstici! */
+    text-align: center;
+    
+    /* Popravek, da gumb ni "zmečkan" */
+    flex-shrink: 0; 
 }
 
 
