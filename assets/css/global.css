@@ -1635,6 +1635,9 @@ nav a.active {
     filter: none;              /* brez obarvanja */
 }
 
+html {
+    scroll-behavior: smooth;
+}
 
 
 
