@@ -25,8 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->isSMTP();
         $mail->Host = 'mail.brm.si';
         $mail->SMTPAuth = true;
-        $mail->Username = 'info@brm.si';
-        $mail->Password = 'cmBMS561';
+        $mail->Username = 'username/email';
+        $mail->Password = 'user_password';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
 
