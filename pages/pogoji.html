@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRM – Pogoji uporabe</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/global.min.css">
+    <script src="../assets/js/main.min.js" defer></script>
+</head>
+
+<body>
+
+<header>
+    <div class="header-container">
+        <a href="../index.html">
+            <img src="../assets/images/Untitled-1.png" alt="BRM Logo" class="logo">
+        </a>
+
+        <nav id="desktopNav">
+            <a href="../index.html" class="nav-link">Domov</a>
+            <a href="storitve.html" class="nav-link">Storitve</a>
+            <a href="o_nas.html" class="nav-link">O nas</a>
+            <a href="kontakt.html" class="nav-link">Kontakt</a>
+        </nav>
+
+        <div class="dropdown" id="ctaDropdown">
+            <button class="cta-button" onclick="toggleDropdown()">Naroči storitev</button>
+            <div class="dropdown-content">
+                <a href="tel:+38669699848">+386 69 699 848</a>
+                <a href="mailto:info@brm.si">info@brm.si</a>
+            </div>
+        </div>
+
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+        </button>
+    </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+    <button class="close-menu-btn" onclick="toggleMobileMenu()">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+    </button>
+
+    <div class="mobile-nav-content">
+        <a href="../index.html" onclick="toggleMobileMenu()">Domov</a>
+        <a href="storitve.html" onclick="toggleMobileMenu()">Storitve</a>
+        <a href="o_nas.html" onclick="toggleMobileMenu()">O nas</a>
+        <a href="kontakt.html" onclick="toggleMobileMenu()">Kontakt</a>
+
+        <div class="mobile-nav-divider"></div>
+
+        <a href="tel:+38669699848" class="highlight-link">+386 69 699 848</a>
+        <a href="mailto:info@brm.si" class="highlight-link">info@brm.si</a>
+
+        <button class="btn" onclick="openModal(); toggleMobileMenu()">Naroči storitev</button>
+    </div>
+</div>
+
+<main id="hero" class="page-content" style="padding-top: 4rem;">
+    <section class="hero-section">
+        <div class="hero-inner">
+            <h1>Pogoji uporabe</h1>
+            <p>Ti pogoji določajo pravice in obveznosti uporabnikov spletnega mesta BRM.</p>
+        </div>
+    </section>
+
+    <section class="content-section terms">
+        <div class="content-inner">
+
+            <h2>1. Splošne določbe</h2>
+            <p>
+                Z uporabo spletnega mesta potrjujete, da se strinjate s pogoji in jih razumete.
+            </p>
+
+            <h2>2. Dostop do spletnega mesta</h2>
+            <p>
+                Spletno mesto je na voljo 24/7, razen ob vzdrževanju, nadgradnjah ali višji sili.
+                Ponudnik ne odgovarja za morebitne izpade ali motnje.
+            </p>
+
+            <h2>3. Uporaba spletnega mesta</h2>
+            <p>Prepovedano je:</p>
+            <ul>
+                <li>nezakonito ali škodljivo delovanje,</li>
+                <li>avtomatizirano zbiranje podatkov (scraping),</li>
+                <li>poskusi nepooblaščenega dostopa,</li>
+                <li>vstavljanje zlonamerne kode.</li>
+            </ul>
+
+            <h2>4. Storitve in informacije</h2>
+            <p>
+                Vse informacije na strani so informativne. Lahko se spreminjajo brez predhodnega obvestila.
+            </p>
+
+            <h2>5. Intelektualna lastnina</h2>
+            <p>Prepovedano je:</p>
+            <ul>
+                <li>kopiranje ali distribucija vsebin brez dovoljenja,</li>
+                <li>uporaba logotipa brez soglasja,</li>
+                <li>vključno reproduciranje besedil, slik ali grafičnih elementov.</li>
+            </ul>
+
+            <h2>6. Odgovornost</h2>
+            <p>
+                Ponudnik ne odgovarja za škodo, povzročeno zaradi uporabe ali nedelovanja spletnega mesta.
+            </p>
+
+            <h2>7. Povezave na zunanja spletna mesta</h2>
+            <p>
+                Za vsebino zunanjih strani ponudnik ne odgovarja.
+            </p>
+
+            <h2>8. Varstvo osebnih podatkov</h2>
+            <p>
+                Obdelava poteka v skladu z zakonodajo ter <a href="politika-zasebnosti.html">Politiko zasebnosti</a>.
+            </p>
+
+            <h2>9. Spremembe pogojev</h2>
+            <p>Pogoji se lahko kadarkoli posodobijo.</p>
+
+            <p style="margin-top: 2rem; opacity: 0.7;">Zadnja posodobitev: marec 2025</p>
+
+        </div>
+    </section>
+</main>
+
+<footer>
+        <div class="footer-container">
+            <!-- Company Info -->
+            <div class="footer-section">
+                <img src="../assets/images/Untitled-1.png" alt="BRM Logo" class="footer-logo" style="width: 220px;">
+            </div>
+
+            <!-- Contact -->
+            <div class="footer-section">
+                <h3>Kontakt</h3>
+                <a href="tel:+38669699848">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    +386 69 699 848
+                </a>
+                <a href="mailto:info@brm.si">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    info@brm.si
+                </a>
+            </div>
+
+            <div class="footer-section">
+    <h3>Pravne informacije</h3>
+    <a href="pogoji.html" class="footer-item">Pogoji uporabe</a>
+    <a href="privacy.html" class="footer-item">Politika zasebnosti</a>
+    <a href="cookies.html" class="footer-item">Politika piškotkov</a>
+</div>
+
+            <!-- Social Media -->
+            <div class="footer-section">
+                <h3>Sledite nam</h3>
+                <div class="social-links">
+                    <a href="" class="social-link">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="" class="social-link">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="" class="social-link">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 BRM d.o.o. - Vse pravice pridržane.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
